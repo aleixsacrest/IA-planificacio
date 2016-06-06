@@ -1,0 +1,8 @@
+(dificultat ?x)
+(preparador ?x ?y)
+(dif-seguent ?x ?y)
+(ultima-dificultat ?x ?y)
+(objectiu ?x ?y)
+(exercici ?x)
+(dia ?x)
+(dia-seguent ?x ?y)

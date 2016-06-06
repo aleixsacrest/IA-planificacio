@@ -18,8 +18,8 @@ for i in range(1,16):
 		op = '(dia-seguent'
 		dies[1] += op + ' dia' + str(i-1) + ' dia' + str(i) + ') '
 		setOps.add(op+' ?x ?y)')
-objects += '\n' + dies[0]
-init += '\n' + dies[1]
+objects += '\n\t' + dies[0]
+init += '\n\t' + dies[1]
 
 difi = ['','']
 for i in range(1,11):
@@ -32,8 +32,8 @@ for i in range(1,11):
 		op = '(dif-seguent'
 		difi[1] += op + ' niv' + str(i-1) + ' niv' + str(i) + ') '
 		setOps.add(op+' ?x ?y)')
-objects += '\n' + difi[0]
-init += '\n' + difi[1]
+objects += '\n\t' + difi[0]
+init += '\n\t' + difi[1]
 
 ex = ['','']
 ex_rel = {}
@@ -73,9 +73,20 @@ for i in range(0,nex):
 		op = '(preparador'
 		ex[1] += op + ' ' + nom + ' ' + p + ') '
 		setOps.add(op+' ?x ?y)')
-objects += '\n' + ex[0]
-init += '\n' + ex[1]
+objects += '\n\t' + ex[0]
+init += '\n\t' + ex[1]
 
 print objects
 print init
 for s in setOps: print s
+
+f = open('pbm.pddl','w')
+f.write('(define (problem exs)\n\t(:domain entrenaminento)\n\t(:objects ')
+f.write(objects+')')
+f.write('\n\t(:init ')
+f.write(init+')')
+f.write('\n\t(:goal '+')\n)')
+f.close()
+
+f = open('predicates.txt','w')
+for s in setOps: print f.write(s+'\n')

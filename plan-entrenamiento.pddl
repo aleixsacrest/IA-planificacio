@@ -3,24 +3,20 @@
   (:predicates 
     
     
-    (realitzat ?x ?d) 
-    (dificultat ?x ?dif)
-    (objectiu ?x ?dif)
-    (te-precursors ?x)
-    (precursor ?x ?y)
-    (te-preparadors ?x)
-    (preparador ?x ?y)
-    
-    (seguent ?n1 ?n2)
+    ;(realitzat ?x ?d)  ;exercici ?x realitzat dia ?d
+    ;(te-preparadors ?x)
     ;;;
     (dia ?d)
     (dia-actual ?d)
     (dia-seguent ?d1 ?d2)
     (exercici ?ex)
     (dificultat ?dif)
-    (dificultat-correcta ?ex ?dif)
     (exercici-dia ?ex ?dia)
-    (es-preparador ?ex_prep ?ex_obj) ;ex_prep es preparador de ex_obj
+	
+	(preparador ?x ?y) ;; ?y es preparador de ?x
+	(dif-seguent ?x ?y) ;; ?y es la dificultat del seguent nivel de ?x
+	(ultima-dificultat ?x ?y) ;; ?y es la dificultat amb la que s'ha realitzat l'exercici ?x per ultim cop
+	(objectiu ?x ?y) ;; ?y es la dificultat objectiu que es vol assolir per l'exercici ?x pel programa
   )
     
   (:action Start
