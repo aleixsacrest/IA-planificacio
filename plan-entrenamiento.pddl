@@ -47,6 +47,25 @@
     )
   )
   
+  (:action fer-preparador
+    :parameters (?dia ?ex_obj ?ex_prep)
+    :precondition (
+      and 
+      (dia ?dia) (dia-actual ?dia)
+      (exercici ?ex_obj) (exercici ?ex_prep)
+      (not (exercici-dia ?ex_prep ?dia))
+      (not (te-objectiu ?ex_obj))
+      (preparador ?ex_obj ?ex_prep)
+      (not (te-preparador ?ex_prep ?dia))
+      (not (te-objectiu ?ex_prep))
+    )
+    :effect (
+      and
+      (not (te-preparador ?ex_obj ?dia))
+      (exercici-dia ?ex_prep ?dia)
+    )
+  )
+  
   (:action mirar-preparadors
     :parameters (?dia ?ex_obj ?ex_prep)
     :precondition (
