@@ -2,6 +2,7 @@
 (nObjectius ?x)
 (preparador ?x ?y)
 (dif-seguent ?x ?y)
+(decrP ?x ?y)
  (exercicisFets ?x)
 (ultima-dificultat ?x ?y)
 (objectiu ?x ?y)
