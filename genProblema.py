@@ -107,6 +107,9 @@ for i in range(0,nobjsdia):
 
 objects += '\n\t\t' + ex[0]
 init += '\n\t\t' + ex[1]
+objects += '\n\t\t'
+for i in range(0,nobjsdia+1):
+	objects += 'n' + str(i) + ' '
 goal += ex[2]
 
 #print objects
@@ -118,7 +121,7 @@ f.write('(define (problem exs)\n\t(:domain entrenaminento)\n\t(:objects ')
 f.write(objects+')')
 f.write('\n\t(:init ')
 f.write(init+')')
-f.write('\n\t(:goal '+goal+')\n)')
+f.write('\n\t(:goal (and '+goal+'))\n)')
 f.close()
 
 f = open('predicates.txt','w')

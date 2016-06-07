@@ -9,8 +9,8 @@
     (exercici ?ex)
     (dificultat ?dif)
     (exercici-dia ?ex ?dia)
-    (te-preparadors ?x ?dia)
-    (te-objectiu ?x ?dia)
+    (te-preparador ?x ?dia)
+    (te-objectiu ?x)
     (preparador ?x ?y) ;; ?y es preparador de ?x
     (dif-seguent ?x ?y) ;; ?y es la dificultat del seguent nivell de ?x
     (ultima-dificultat ?x ?y) ;; ?y es la dificultat amb la que s'ha realitzat l'exercici ?x per ultim cop
@@ -18,13 +18,14 @@
     (nObjectius ?n)
     (nObjectiusDema ?n)
     (exercicisFets ?n)
+	(incrN ?x ?y)
     
   )
     
   (:action Start
     :parameters (?dia ?dema)
     :precondition (and (dia ?dia) (dia-actual ?dia) (= ?dia dia0) (dia-seguent ?dia ?dema))
-    :effect (and (not dia-actual ?dia) (dia-actual ?dema))
+    :effect (and (not (dia-actual ?dia)) (dia-actual ?dema))
   )
   
   (:action fer-preparador
@@ -36,14 +37,14 @@
       (not (exercici-dia ?ex_prep ?dia))
       (te-objectiu ?ex_obj)
       (preparador ?ex_obj ?ex_prep)
-      (not (te-preparadors ?ex_prep ?dia))
-      (not (te-objectiu ?ex_prep ?dia))
+      (not (te-preparador ?ex_prep ?dia))
+      (not (te-objectiu ?ex_prep))
       (dificultat ?dif_prep)
       (ultima-dificultat ?ex_prep ?dif_prep)
     )
-    :effects (
+    :effect (
       and
-      (not (te-preparadors ?ex_obj ?dia))
+      (not (te-preparador ?ex_obj ?dia))
       (exercici-dia ?ex_prep ?dia)
     )
   )
@@ -55,10 +56,10 @@
       (dia ?dia) (dia-actual ?dia)
       (exercici ?ex_obj) (exercici ?ex_prep)
       (exercici-dia ?dia ?ex_prep)
-      (te-preparadors ?ex_obj ?dia)
+      (te-preparador ?ex_obj ?dia)
       (preparador ?ex_obj ?ex_prep)
     )
-    :effects ( (not (te-preparadors ?ex_obj ?dia)) )
+    :effect  (not (te-preparador ?ex_obj ?dia)) 
   )
   
   (:action fer-exerciciObjectiu
@@ -67,7 +68,7 @@
       and
       (dia ?dia) (dia-actual ?dia)
       (exercici ?ex_obj)
-      (not (te-preparadors ?ex_obj ?dia))
+      (not (te-preparador ?ex_obj ?dia))
       (te-objectiu ?ex_obj)
       (not (exercici-dia ?ex_obj ?dia))
       (dificultat ?ultdif_obj) (dificultat ?dif_obj)
@@ -76,7 +77,7 @@
       (exercicisFets ?n)
       (incrN ?n ?n1)
     )
-    :effects (
+    :effect (
       and 
       (exercici-dia ?ex_obj ?dia)
       (not (ultima-dificultat ?ex_obj ?ultdif_obj))
@@ -98,7 +99,7 @@
       (nObjectiusDema ?n)
       (incrN ?n1 ?n)
     )
-    :effects ( 
+    :effect ( 
       and 
       (not (te-objectiu ?ex_obj))
       (not (nObjectiusDema ?n))
@@ -115,10 +116,11 @@
       (nObjectius ?nExs)
       (nObjectiusDema ?nDema)
     )
-    :effects (
+    :effect (
       and
       (not (dia-actual ?dia)) (dia-actual ?dema)
       (not (exercicisFets ?nExs)) (exercicisFets n0)
       (not (nObjectius ?nExs)) (nObjectius ?nDema)
     )
+  )
   )
