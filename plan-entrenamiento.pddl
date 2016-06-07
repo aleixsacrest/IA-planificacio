@@ -29,7 +29,7 @@
   )
   
   (:action fer-preparador
-    :parameters (?dia ?ex_obj ?ex_prep ?dif_prep)
+    :parameters (?dia ?ex_obj ?ex_prep)
     :precondition (
       and 
       (dia ?dia) (dia-actual ?dia)
@@ -39,8 +39,6 @@
       (preparador ?ex_obj ?ex_prep)
       (not (te-preparador ?ex_prep ?dia))
       (not (te-objectiu ?ex_prep))
-      (dificultat ?dif_prep)
-      (ultima-dificultat ?ex_prep ?dif_prep)
     )
     :effect (
       and
