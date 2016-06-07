@@ -37,5 +37,5 @@
 		(exercici ex0) (ultima-dificultat ex0 niv9) (objectiu ex0 niv10) (te-objectiu ex0) 
 		
 		(nObjectius n1)  (nObjectiusDema n1)  (incrN n0 n1) )
-	(:goal (and (ultima-dificultat ex0 niv10) (nObjectius n0) ))
+	(:goal (and (ultima-dificultat ex0 niv10) (dia-actual dia15)))
 )

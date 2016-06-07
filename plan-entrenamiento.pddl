@@ -25,7 +25,7 @@
   (:action Start
     :parameters (?dia ?dema)
     :precondition (and (dia ?dia) (dia-actual ?dia) (= ?dia dia0) (dia-seguent ?dia ?dema))
-    :effect (and (not (dia-actual ?dia)) (dia-actual ?dema))
+    :effect (and (not (dia-actual ?dia)) (dia-actual ?dema) (exercicisFets n0))
   )
   
   (:action fer-preparador
@@ -123,4 +123,4 @@
       (not (nObjectius ?nExs)) (nObjectius ?nDema)
     )
   )
-  )
+)
