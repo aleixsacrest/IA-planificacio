@@ -121,7 +121,7 @@ f.write('(define (problem exs)\n\t(:domain entrenaminento)\n\t(:objects ')
 f.write(objects+')')
 f.write('\n\t(:init ')
 f.write(init+')')
-f.write('\n\t(:goal (and '+goal+'))\n)')
+f.write('\n\t(:goal (and '+goal+' (dia-actual dia15)))\n)')
 f.close()
 
 f = open('predicates.txt','w')
