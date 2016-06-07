@@ -55,9 +55,9 @@ for i in range(0,nex):
 	op = '(ultima-dificultat'
 	ex[1] += op + ' ' + nom + ' niv' + str(dificultat) + ') '
 	setOps.add(op+' ?x ?y)')
-	if random.randint(1,2) == 1:
+	if dificultat < 10 and random.randint(1,2) == 1:
 		nobjsdia += 1
-		objectiu = random.randint(dificultat,10)
+		objectiu = random.randint(dificultat+1,10)
 		ex[2] 	+= op + ' ' + nom + ' niv' + str(objectiu) + ') '
 		op = '(objectiu'
 		ex[1] += op + ' ' + nom + ' niv' + str(objectiu) + ') '
@@ -81,7 +81,7 @@ for i in range(0,nex):
 		op = '(predecessor'
 		ex[1] += op + nom + p + ') '
 		setOps.add(op+' ?x ?y)')
-	'''for j in range(0,nprepi):
+	for j in range(0,nprepi):
 		if not teprep:
 			for d in dies[0].split(' ')[1:16]: ex[1] += ' (te-preparador ' + nom + ' ' + d + ')'
 			tepred = True
@@ -91,7 +91,7 @@ for i in range(0,nex):
 		ex_rel[nom][1].append(p)
 		op = '(preparador'
 		ex[1] += op + ' ' + nom + ' ' + p + ') '
-		setOps.add(op+' ?x ?y)')'''
+		setOps.add(op+' ?x ?y)')
 	ex[1] += '\n\t\t'
 
 op = '(nObjectius'
