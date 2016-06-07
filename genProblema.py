@@ -55,7 +55,7 @@ for i in range(0,nex):
 	op = '(ultima-dificultat'
 	ex[1] += op + ' ' + nom + ' niv' + str(dificultat) + ') '
 	setOps.add(op+' ?x ?y)')
-	if random.randint(1,3) == 1:
+	if random.randint(1,2) == 1:
 		nobjsdia += 1
 		objectiu = random.randint(dificultat,10)
 		ex[2] 	+= op + ' ' + nom + ' niv' + str(objectiu) + ') '
