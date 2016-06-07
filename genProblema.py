@@ -85,7 +85,7 @@ for i in range(0,nex):
 		if not teprep:
 			for d in dies[0].split(' ')[1:16]: ex[1] += ' (te-preparador ' + nom + ' ' + d + ')'
 			tepred = True
-		p = 'ex'+str(random.randint(0,nex-1))
+		p = 'ex'+str(random.randint(i,nex-1))
 		while p == nom or (p in ex_rel.keys() and (nom in ex_rel[p][0] or nom in ex_rel[p][1])):
 			p = 'ex'+str(random.randint(0,nex-1))
 		ex_rel[nom][1].append(p)
