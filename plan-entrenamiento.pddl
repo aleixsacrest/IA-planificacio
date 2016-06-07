@@ -66,7 +66,7 @@
     :parameters (?dia ?ex_obj ?ultdif_obj ?dif_obj ?n ?n1)
     :precondition (
       and
-      (dia ?dia) (dia-actual ?dia)
+      (dia ?dia) (dia-actual ?dia) (not (= ?dia dia0))
       (exercici ?ex_obj)
       (not (te-preparador ?ex_obj ?dia))
       (te-objectiu ?ex_obj)
