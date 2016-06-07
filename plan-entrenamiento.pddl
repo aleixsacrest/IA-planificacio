@@ -53,7 +53,7 @@
       and
       (dia ?dia) (dia-actual ?dia)
       (exercici ?ex_obj) (exercici ?ex_prep)
-      (exercici-dia ?dia ?ex_prep)
+      (exercici-dia ?ex_prep ?dia)
       (te-preparador ?ex_obj ?dia)
       (preparador ?ex_obj ?ex_prep)
     )
