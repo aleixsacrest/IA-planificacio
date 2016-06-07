@@ -74,24 +74,24 @@ for i in range(0,nex):
 		if not tepred:
 			for d in dies[0].split(' '): ex[1] += ' (te-predecessor ' + nom + ' ' + d + ')'
 			tepred = True
-		p = 'ex'+str(random.randint(0,nex))
+		p = 'ex'+str(random.randint(0,nex-1))
 		while (p in ex_rel.keys() and (nom in ex_rel[p][0] or nom in ex_rel[p][1])):
-			p = 'ex'+str(str(random.randint(0,nex)))
+			p = 'ex'+str(str(random.randint(0,nex-1)))
 		ex_rel[nom][0].append(p)
 		op = '(predecessor'
 		ex[1] += op + nom + p + ') '
 		setOps.add(op+' ?x ?y)')
-	for j in range(0,nprepi):
+	'''for j in range(0,nprepi):
 		if not teprep:
 			for d in dies[0].split(' ')[1:16]: ex[1] += ' (te-preparador ' + nom + ' ' + d + ')'
 			tepred = True
-		p = 'ex'+str(random.randint(0,nex))
-		while (p in ex_rel.keys() and (nom in ex_rel[p][0] or nom in ex_rel[p][1])):
-			p = 'ex'+str(random.randint(0,nex))
+		p = 'ex'+str(random.randint(0,nex-1))
+		while p == nom or (p in ex_rel.keys() and (nom in ex_rel[p][0] or nom in ex_rel[p][1])):
+			p = 'ex'+str(random.randint(0,nex-1))
 		ex_rel[nom][1].append(p)
 		op = '(preparador'
 		ex[1] += op + ' ' + nom + ' ' + p + ') '
-		setOps.add(op+' ?x ?y)')
+		setOps.add(op+' ?x ?y)')'''
 	ex[1] += '\n\t\t'
 
 op = '(nObjectius'
@@ -99,6 +99,9 @@ ex[1] += '\n\t\t' +op + ' n' + str(nobjsdia) + ') '
 setOps.add(op+' ?x)')
 op = ' (nObjectiusDema'
 ex[1] += op + ' n' + str(nobjsdia) + ') '
+setOps.add(op+' ?x)')
+op = ' (exercicisFets'
+ex[1] += op + ' n' + str(0) + ') '
 setOps.add(op+' ?x)')
 for i in range(0,nobjsdia):
 	op = '(incrN'
