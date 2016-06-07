@@ -18,7 +18,8 @@
     (nObjectius ?n)
     (nObjectiusDema ?n)
     (exercicisFets ?n)
-	(incrN ?x ?y)
+    (incrN ?x ?y)
+    (fer-prep ?x ?y)
     
   )
     
@@ -28,56 +29,64 @@
     :effect (and (not (dia-actual ?dia)) (dia-actual ?dema) (exercicisFets n0))
   )
   
-  (:action fer-preparador
-    :parameters (?dia ?ex_obj ?ex_prep)
-    :precondition (
-      and 
-      (dia ?dia) (dia-actual ?dia)
-      (exercici ?ex_obj) (exercici ?ex_prep)
-      (not (exercici-dia ?ex_prep ?dia))
-      (te-objectiu ?ex_obj)
-      (preparador ?ex_obj ?ex_prep)
-      (not (te-preparador ?ex_prep ?dia))
-      (not (te-objectiu ?ex_prep))
-    )
-    :effect (
-      and
-      (not (te-preparador ?ex_obj ?dia))
-      (exercici-dia ?ex_prep ?dia)
-    )
-  )
-  
-  (:action fer-preparador
-    :parameters (?dia ?ex_obj ?ex_prep)
-    :precondition (
-      and 
-      (dia ?dia) (dia-actual ?dia)
-      (exercici ?ex_obj) (exercici ?ex_prep)
-      (not (exercici-dia ?ex_prep ?dia))
-      (not (te-objectiu ?ex_obj))
-      (preparador ?ex_obj ?ex_prep)
-      (not (te-preparador ?ex_prep ?dia))
-      (not (te-objectiu ?ex_prep))
-    )
-    :effect (
-      and
-      (not (te-preparador ?ex_obj ?dia))
-      (exercici-dia ?ex_prep ?dia)
-    )
-  )
-  
   (:action mirar-preparadors
     :parameters (?dia ?ex_obj ?ex_prep)
     :precondition (
       and
       (dia ?dia) (dia-actual ?dia)
       (exercici ?ex_obj) (exercici ?ex_prep)
-      (exercici-dia ?ex_prep ?dia)
+      (exercici-dia ?dia ?ex_prep)
       (te-preparador ?ex_obj ?dia)
       (preparador ?ex_obj ?ex_prep)
     )
     :effect  (not (te-preparador ?ex_obj ?dia)) 
   )
+  
+  (:action preparar-objectiu
+   :parameters (?dia ?ex_obj ?ex_prep)
+   :precondition (   
+      and
+      (dia ?dia) (dia-actual ?dia) (not (= ?dia dia0))
+      (exercici ?ex_obj) (exercici ?ex_prep)
+      (not (exercici-dia ?ex_prep ?dia))
+      (te-preparador ?ex_obj ?dia)
+      (preparador ?ex_obj ?ex_prep)
+   )
+   :effect (fer-prep ?ex_prep ?ex_obj)
+  )
+  
+  (:action fer-preparador
+    :parameters (?dia ?ex_obj ?ex_prep)
+    :precondition (
+      and
+      (dia ?dia) (dia-actual ?dia) (not (= ?dia dia0))
+      (exercici ?ex_prep) (exercici ?ex_obj)
+      (fer-prep ?ex_prep ?ex_obj)
+      (not (te-preparador ?ex_prep ?dia))
+    )
+    :effect (
+      and
+      (not (fer-prep ?ex_prep ?ex_obj))
+      (not (te-preparador ?ex_obj ?dia))
+      (exercici-dia ?ex_prep ?dia)
+    )
+  )
+  
+  (:action fer-preparador-preparador
+    :parameters (?dia ?ex_obj ?ex_prep ?ex_prep-prep)
+    :precondition (
+      and
+      (dia ?dia) (dia-actual ?dia) (not (= ?dia dia0))
+      (exercici ?ex_prep) (exercici ?ex_obj)
+      (fer-prep ?ex_prep ?ex_obj)
+      (te-preparador ?ex_prep ?dia) (preparador ?ex_prep ?ex_prep-prep)
+    )
+    :effect (
+      fer-prep ?ex_prep-prep ?ex_prep
+    )
+  )
+  
+  
   
   (:action fer-exerciciObjectiu
     :parameters (?dia ?ex_obj ?ultdif_obj ?dif_obj ?n ?n1)
