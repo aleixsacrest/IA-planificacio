@@ -53,6 +53,7 @@
       (dia ?dia) (dia-actual ?dia) (not (= ?dia dia0))
       (exercici ?ex_prep) (exercici ?ex_obj)
       (fer-prep ?ex_prep ?ex_obj)
+	  (not (exercici-dia ?ex_prep ?dia))
       ;(or (not (te-preparador ?ex_prep ?dia ?numn)) (te-preparador ?ex_prep ?dia num0))
 	  (te-preparador ?ex_prep ?dia num0)
 	  (te-preparador ?ex_obj ?dia ?npreps_obj)
@@ -64,6 +65,26 @@
       (not (te-preparador ?ex_obj ?dia ?npreps_obj))
 	  (te-preparador ?ex_obj ?dia ?npreps_obj1)
       (exercici-dia ?ex_prep ?dia)
+    )
+  )
+  
+  (:action preparador-fet
+    :parameters (?dia ?ex_obj ?ex_prep ?npreps_obj ?npreps_obj1)
+    :precondition (
+      and
+      (dia ?dia) (dia-actual ?dia) (not (= ?dia dia0))
+      (exercici ?ex_prep) (exercici ?ex_obj)
+      (fer-prep ?ex_prep ?ex_obj)
+	  (exercici-dia ?ex_prep ?dia)
+      ;(or (not (te-preparador ?ex_prep ?dia ?numn)) (te-preparador ?ex_prep ?dia num0))
+	  (te-preparador ?ex_obj ?dia ?npreps_obj)
+	  (decrP ?npreps_obj ?npreps_obj1)
+    )
+    :effect (
+      and
+      (not (fer-prep ?ex_prep ?ex_obj))
+      (not (te-preparador ?ex_obj ?dia ?npreps_obj))
+	  (te-preparador ?ex_obj ?dia ?npreps_obj1)
     )
   )
   
